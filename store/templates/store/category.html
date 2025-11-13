@@ -1,0 +1,25 @@
+
+{% extends 'store/base.html' %}
+
+
+
+
+{% block content %}
+
+    <h2>دسته‌بندی‌ها</h2>
+<ul>
+  {% for category in categories %}
+    {% if category.id %}  <!-- فقط اگر id وجود داشت -->
+      <li>
+        <a href="{% url 'store:category_product' category.id %}">
+          {{ category.name }}
+        </a>
+      </li>
+    {% endif %}
+  {% empty %}
+    <li>هیچ دسته‌ای وجود ندارد.</li>
+  {% endfor %}
+</ul>
+
+
+{% endblock  %}

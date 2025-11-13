@@ -1,0 +1,127 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}ثبت‌نام کاربر{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .register-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    animation: fadeIn 0.8s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  .register-card h3 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+  }
+
+  label {
+    font-weight: 500;
+    color: #fff;
+  }
+
+  input {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease;
+  }
+
+  input:focus {
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.7);
+    background: rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #0d6efd, #20c997);
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+  }
+
+  .errorlist {
+    color: #ffb3b3;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+
+  .link-back {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #e0e0e0;
+    text-decoration: none;
+  }
+
+  .link-back:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+</style>
+
+<div class="register-card">
+  <h3>ثبت‌نام کاربر جدید</h3>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.email.label_tag }}
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.password.label_tag }}
+      {{ form.password }}
+      {{ form.password.errors }}
+    </div>
+
+    <div class="mb-3">
+      {{ form.password2.label_tag }}
+      {{ form.password2 }}
+      {{ form.password2.errors }}
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit">ثبت‌نام</button>
+  </form>
+
+  <a href="{% url 'accounts:login' %}" class="link-back">حساب کاربری دارید؟ وارد شوید</a>
+</div>
+{% endblock %}

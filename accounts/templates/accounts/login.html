@@ -1,0 +1,87 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    min-height: 100vh;
+  }
+
+  .login-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .login-title {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .btn-login {
+    background: linear-gradient(90deg, #4CAF50, #2e7d32);
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .btn-login:hover {
+    background: linear-gradient(90deg, #43A047, #1b5e20);
+    transform: scale(1.02);
+  }
+
+  .form-control {
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .form-control:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+  }
+
+  .register-link a {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container d-flex align-items-center justify-content-center py-5" style="min-height: 90vh;">
+  <div class="col-md-5">
+    <div class="login-card">
+      <h3 class="text-center mb-4 login-title">ورود به حساب کاربری</h3>
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+          {{ form.username.label_tag }}
+          {{ form.username }}
+          {{ form.username.errors }}
+        </div>
+        <div class="mb-3">
+          {{ form.password.label_tag }}
+          {{ form.password }}
+          {{ form.password.errors }}
+        </div>
+        <button class="btn btn-login w-100 text-white py-2" type="submit">ورود</button>
+      </form>
+      <p class="mt-4 text-center register-link">
+        حساب نداری؟ <a href="{% url 'accounts:register' %}">ثبت‌نام کن</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

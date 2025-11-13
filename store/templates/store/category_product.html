@@ -1,0 +1,64 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+
+  {% block content %}
+  
+<div style="
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding: 20px;
+  
+  background-color: #f4f4f8;
+  border-radius:7px;
+">
+  {% for product in products %}
+    <div style="
+      border: none;
+      padding: 15px;
+      width: 220px;
+      border-radius: 15px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    "
+    onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.15)';"
+    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.1)';">
+      
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+          border-radius: 12px;
+          margin-bottom: 10px;
+        ">
+      {% else %}
+        <div style="
+          width: 100%;
+          height: 220px;
+          background-color: #e0e0e0;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #666;
+          font-size: 14px;
+        ">بدون تصویر</div>
+      {% endif %}
+
+      <h4 style="margin: 10px 0 5px; color: #333; font-size: 18px;">{{ product.name }}</h4>
+      <p style="color: #ff6600; font-weight: bold; font-size: 16px;">{{ product.price }} تومان</p>
+      <a href="{% url 'store:add_to_cart' product.id %}" class="btn btn-primary w-100 mt-2">افزودن به سبد خرید</a>
+
+    </div>
+  {% endfor %}
+</div>
+  {% endblock %}
+
+
+</body>
+</html>

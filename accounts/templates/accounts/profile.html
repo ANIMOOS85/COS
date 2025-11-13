@@ -1,0 +1,108 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}پروفایل کاربر{% endblock %}
+
+{% block content %}
+<style>
+  .profile-card {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 40px 30px;
+    max-width: 500px;
+    margin: 80px auto;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+
+  .profile-card h2 {
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 15px;
+  }
+
+  .profile-card p {
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .profile-card strong {
+    color: #0d6efd;
+  }
+
+  .btn-custom {
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-custom:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-danger {
+    background: linear-gradient(135deg, #ff4d4d, #ff7575);
+    border: none;
+  }
+
+  .btn-secondary {
+    background: linear-gradient(135deg, #adb5bd, #ced4da);
+    border: none;
+    color: #212529;
+  }
+
+  .btn-info {
+    background: linear-gradient(135deg, #0dcaf0, #66e0ff);
+    border: none;
+  }
+
+  .btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(13, 110, 253, 0.5);
+    margin-bottom: 15px;
+  }
+</style>
+
+<div class="profile-card text-center">
+{% if profile.image %}
+    <img src="{{ profile.image.url }}" alt="پروفایل" class="avatar">
+{% else %}
+    <img src="{% static 'img/default-avatar.png' %}" alt="پروفایل پیش‌فرض" class="avatar">
+{% endif %}
+
+  <h2>پروفایل کاربری</h2>
+  <hr class="w-50 mx-auto mb-4">
+  <p>سلام <strong>{{ user.username }}</strong> 👋</p>
+  <p>ایمیل شما: <strong>{{ user.email }}</strong></p>
+
+  <div class="btn-container">
+    <a href="{% url 'accounts:logout' %}" class="btn btn-danger btn-custom">
+      <i class="bi bi-box-arrow-right me-1"></i> خروج
+    </a>
+    <a href="{% url 'store:store' %}" class="btn btn-secondary btn-custom">
+      <i class="bi bi-shop me-1"></i> فروشگاه
+    </a>
+    <a href="{% url 'accounts:edit_profile' %}" class="btn btn-info btn-custom text-white">
+      <i class="bi bi-pencil-square me-1"></i> ویرایش پروفایل
+    </a>
+  </div>
+</div>
+{% endblock %}

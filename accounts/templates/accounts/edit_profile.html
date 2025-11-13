@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+
+{% block title %}ویرایش پروفایل{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+  <h2 class="mb-4 text-center">ویرایش پروفایل</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary w-100">ذخیره تغییرات</button>
+  </form>
+  <div class="text-center mt-3">
+    <a href="{% url 'accounts:profile' %}" class="btn btn-secondary">بازگشت</a>
+  </div>
+</div>
+{% endblock %}
