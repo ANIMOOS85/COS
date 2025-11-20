@@ -29,13 +29,14 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 SECRET_KEY = 'django-insecure-=8pif$_55%2cesh17!2###y7*0y8%o=-%g*tc5xu$&ck0!)wbg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'error',
     'store',
     'accounts',
     'django.contrib.admin',
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'clothes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,3 +129,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
